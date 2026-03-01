@@ -1,4 +1,4 @@
-package dev.shaikhmahad.template.dto.response;
+package dev.shaikhmahad.fitness.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

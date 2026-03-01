@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>dev.shaikhmahad</groupId>
-    <artifactId>springboot-template</artifactId>
+    <artifactId>fitness-tracker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-template</name>
-    <description>Reusable Spring Boot 4 boilerplate with Java 25, JPA, OpenAPI, and MapStruct</description>
+    <name>fitness-tracker</name>
+    <description>Backend REST API for a Fitness Tracking Platform</description>
 
     <properties>
         <java.version>25</java.version>

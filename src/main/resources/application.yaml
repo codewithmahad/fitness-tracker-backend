@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: springboot-template
+    name: fitness-tracker
 
   # --- DATABASE CONNECTION (MySQL) ---
   datasource:

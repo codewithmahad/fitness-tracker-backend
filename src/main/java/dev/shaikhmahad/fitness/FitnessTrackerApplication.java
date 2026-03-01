@@ -1,13 +1,13 @@
-package dev.shaikhmahad.template;
+package dev.shaikhmahad.fitness;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootTemplateApplication {
+public class FitnessTrackerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootTemplateApplication.class, args);
+		SpringApplication.run(FitnessTrackerApplication.class, args);
 	}
 
 }

@@ -1,10 +1,10 @@
-package dev.shaikhmahad.template;
+package dev.shaikhmahad.fitness;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootTemplateApplicationTests {
+class FitnessTrackerApplicationTests {
 
 	@Test
 	void contextLoads() {

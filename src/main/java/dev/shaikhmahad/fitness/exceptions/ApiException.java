@@ -1,4 +1,4 @@
-package dev.shaikhmahad.template.exceptions;
+package dev.shaikhmahad.fitness.exceptions;
 
 public class ApiException extends RuntimeException {
     public ApiException() {

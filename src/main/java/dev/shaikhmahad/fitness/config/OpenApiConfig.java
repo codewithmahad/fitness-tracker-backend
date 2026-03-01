@@ -1,4 +1,4 @@
-package dev.shaikhmahad.template.config;
+package dev.shaikhmahad.fitness.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
@@ -13,8 +13,8 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Spring Boot Enterprise API Template")
-                        .description("A reusable, industry-standard backend boilerplate designed for fast project bootstrapping.")
+                        .title("Fitness Tracker Enterprise API")
+                        .description("Backend REST API for tracking user fitness activities, generating recommendations, and managing role-based access.")
                         .version("1.0.0")
                         .contact(new Contact()
                                 .name("Shaikh Mahad")

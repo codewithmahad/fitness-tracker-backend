@@ -1,4 +1,4 @@
-package dev.shaikhmahad.template.config;
+package dev.shaikhmahad.fitness.config;
 
 public class AppConstants {
 

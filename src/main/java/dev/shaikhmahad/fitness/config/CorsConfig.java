@@ -1,4 +1,4 @@
-package dev.shaikhmahad.template.config;
+package dev.shaikhmahad.fitness.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

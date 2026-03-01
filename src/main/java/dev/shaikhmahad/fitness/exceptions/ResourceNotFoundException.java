@@ -1,4 +1,4 @@
-package dev.shaikhmahad.template.exceptions;
+package dev.shaikhmahad.fitness.exceptions;
 
 import lombok.Getter;
 

@@ -1,6 +1,6 @@
-package dev.shaikhmahad.template.exceptions;
+package dev.shaikhmahad.fitness.exceptions;
 
-import dev.shaikhmahad.template.dto.response.ApiResponse;
+import dev.shaikhmahad.fitness.dto.response.ApiResponse;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;

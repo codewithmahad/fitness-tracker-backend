@@ -1,6 +1,6 @@
-package dev.shaikhmahad.template.utils;
+package dev.shaikhmahad.fitness.utils;
 
-import dev.shaikhmahad.template.dto.response.PageableResponse;
+import dev.shaikhmahad.fitness.dto.response.PageableResponse;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

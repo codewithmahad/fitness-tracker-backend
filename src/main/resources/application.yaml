@@ -8,7 +8,7 @@ spring:
   # --- DATABASE CONNECTION (MySQL) ---
   datasource:
     # Notice the port changed to 3306, and we added the safety flags you used in your last project
-    url: ${DB_URL:jdbc:mysql://localhost:3306/template_db?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC}
+    url: ${DB_URL:jdbc:mysql://localhost:3306/fitness_tracker?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC}
     username: ${DB_USER:root}
     password: ${DB_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver

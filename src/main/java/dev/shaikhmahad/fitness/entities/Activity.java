@@ -1,5 +1,6 @@
 package dev.shaikhmahad.fitness.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.shaikhmahad.fitness.enums.ActivityType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,6 +10,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -44,6 +47,10 @@ public class Activity {
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "additional_metrics", columnDefinition = "json")
     private Map<String, Object> additionalMetrics;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Recommendation> recommendations = new ArrayList<>();
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

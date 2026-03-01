@@ -31,6 +31,11 @@ public class Recommendation {
     @JoinColumn(name = "activity_id", nullable = false)
     private Activity activity;
 
+    private String type;
+
+    @Column(name = "recommendation_text", length = 2000)
+    private String recommendationText;
+
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "json")
     private List<String> improvements;

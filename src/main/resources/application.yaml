@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: springboot-template
+
+  # --- DATABASE CONNECTION (MySQL) ---
+  datasource:
+    # Notice the port changed to 3306, and we added the safety flags you used in your last project
+    url: ${DB_URL:jdbc:mysql://localhost:3306/template_db?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # --- JPA / HIBERNATE CONFIGURATION ---
+  jpa:
+    # Prints the SQL queries to your console so you can learn and debug
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+    hibernate:
+      # CRITICAL: Set to validate because Flyway is managing our tables now
+      ddl-auto: validate
+
+  # --- FLYWAY MIGRATION ---
+  flyway:
+    enabled: true
+    # This prevents Flyway from crashing if you connect it to an existing database later
+    baseline-on-migrate: true
+
+# --- OPENAPI / SWAGGER (Optional but helpful) ---
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

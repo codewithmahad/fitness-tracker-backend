@@ -5,6 +5,7 @@ import dev.shaikhmahad.fitness.dto.request.UserUpdateRequest;
 import dev.shaikhmahad.fitness.dto.response.UserResponse;
 import dev.shaikhmahad.fitness.entities.User;
 import dev.shaikhmahad.fitness.enums.UserRole;
+import dev.shaikhmahad.fitness.exceptions.ResourceAlreadyExistsException;
 import dev.shaikhmahad.fitness.exceptions.ResourceNotFoundException;
 import dev.shaikhmahad.fitness.mappers.UserMapper;
 import dev.shaikhmahad.fitness.repositories.UserRepository;
@@ -27,9 +28,10 @@ public class UserServiceImpl implements UserService {
     public UserResponse registerNewUser(UserRegistrationRequest userRegistrationRequest) {
 
         User user = userMapper.toEntity(userRegistrationRequest);
-        if(userRepository.existsByEmail(user.getEmail())){
-            throw new ResourceAlreadyExistsException("Email is already taken");
+        if (userRepository.existsByEmail(userRegistrationRequest.getEmail())) {
+            throw new ResourceAlreadyExistsException("User", "email", userRegistrationRequest.getEmail());
         }
+
         user.setUserRole(UserRole.USER);
         User savedUser = userRepository.save(user);
         return userMapper.toResponse(savedUser);
@@ -38,8 +40,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse updateUser(UserUpdateRequest userUpdateRequest, Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
-        if(userRepository.existsByEmail(user.getEmail())){
-            throw new ResourceAlreadyExistsException("Email is already taken");
+        // Check if the email from the request is different from their current email
+        if (!user.getEmail().equals(userUpdateRequest.getEmail())) {
+            // If it is different, check if someone else is already using it
+            if (userRepository.existsByEmail(userUpdateRequest.getEmail())) {
+                throw new ResourceAlreadyExistsException("User", "email", userUpdateRequest.getEmail());
+            }
         }
         user.setFirstName(userUpdateRequest.getFirstName());
         user.setLastName(userUpdateRequest.getLastName());
@@ -67,7 +73,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse getUserById(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
-        return  userMapper.toResponse(user);
+        return userMapper.toResponse(user);
     }
 
 

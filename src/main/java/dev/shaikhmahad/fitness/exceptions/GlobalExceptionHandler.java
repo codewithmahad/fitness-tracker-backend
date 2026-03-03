@@ -36,13 +36,16 @@ public class GlobalExceptionHandler {
 
     // Catches errors when a user tries to register/update with data that must be unique but is already taken (e.g., duplicate email)
     @ExceptionHandler(ResourceAlreadyExistsException.class)
-    public ResponseEntity<ApiResponse<Void>> resourceAlreadyExistsExceptionHandler(ResourceAlreadyExistsException ex) {
+    public ResponseEntity<ApiResponse<Void>> handleResourceAlreadyExistsException(ResourceAlreadyExistsException ex) {
         ApiResponse<Void> response = ApiResponse.<Void>builder()
-                .message(ex.getMessage())
                 .success(false)
+                .message(ex.getMessage())
                 .build();
-        return new ResponseEntity<>(response, HttpStatus.CONFLICT); // 409 Conflict
+
+        // 409 Conflict is the industry standard HTTP status for duplicate data
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
+
 
     // Catches general business logic failures that we manually trigger (e.g., "Insufficient balance" or "Account locked")
     @ExceptionHandler(ApiException.class)

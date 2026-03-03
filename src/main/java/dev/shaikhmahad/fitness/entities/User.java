@@ -24,10 +24,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 254)
     private String email;
 
-    @Column(nullable = false, columnDefinition = "CHAR(60)")
+    @Column(nullable = false, length = 60, columnDefinition = "CHAR(60)")
     private String password;
 
     @Column(name = "first_name", nullable = false, length = 100)
@@ -37,16 +37,8 @@ public class User {
     private String lastName;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "ENUM('USER','ADMIN')")
-    private UserRole role;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Activity> activities = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Recommendation> recommendations = new ArrayList<>();
+    @Column(name = "role", nullable = false, columnDefinition = "ENUM('USER','ADMIN')")
+    private UserRole userRole;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -55,4 +47,10 @@ public class User {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Activity> activities = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Activity> recommendations = new ArrayList<>();
 }

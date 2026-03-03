@@ -13,19 +13,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRegistrationRequest {
-
-    @NotBlank(message = "Email cannot be blank")
-    @Email(message = "Invalid email format")
-    private String email;
-
-    @NotBlank(message = "Password cannot be blank")
-    @Size(min = 6, message = "Password must be at least 6 characters long")
-    private String password;
+public class UserUpdateRequest {
 
     @NotBlank(message = "First name cannot be blank")
     @Size(max = 100, message = "First name must not exceed 100 characters")
     private String firstName;
+    private String lastName;
 
-    private String lastName; // Optional field
+    @NotBlank(message = "Email cannot be blank")
+    @Email(message = "Invalid email format")
+    private String email;
 }

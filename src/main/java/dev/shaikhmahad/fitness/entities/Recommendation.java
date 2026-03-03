@@ -31,10 +31,11 @@ public class Recommendation {
     @JoinColumn(name = "activity_id", nullable = false)
     private Activity activity;
 
+    @Column(length = 255)
     private String type;
 
     @Column(name = "recommendation_text", length = 2000)
-    private String recommendationText;
+    private String recommendation;
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "json")
@@ -55,4 +56,5 @@ public class Recommendation {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
 }

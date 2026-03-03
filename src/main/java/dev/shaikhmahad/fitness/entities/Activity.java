@@ -8,6 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,30 +29,15 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "ENUM('RUNNING', 'CYCLING', 'SWIMMING', 'WALKING', 'GYM')")
-    private ActivityType type;
-
     @Column(nullable = false)
     private Integer duration;
 
-    @Column(name = "calories_burned")
-    private Integer caloriesBurned;
+    @Builder.Default
+    @Column(name = "calories_burned", nullable = false)
+    private Integer caloriesBurned = 0;
 
     @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
-
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "additional_metrics", columnDefinition = "json")
-    private Map<String, Object> additionalMetrics;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Recommendation> recommendations = new ArrayList<>();
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -59,4 +46,21 @@ public class Activity {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "ENUM('RUNNING', 'CYCLING', 'SWIMMING', 'WALKING', 'GYM')")
+    private ActivityType type;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "additional_metrics", columnDefinition = "json")
+    private Map<String, Object> additionalMetrics;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Recommendation> recommendations = new ArrayList<>();
 }
+

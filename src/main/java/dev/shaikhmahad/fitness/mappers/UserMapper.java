@@ -14,7 +14,7 @@ public interface UserMapper {
     @Mapping(target = "createdAt" , ignore = true)
     @Mapping(target = "updatedAt" , ignore = true)
     @Mapping(target = "userRole" , ignore = true)
-    User toEntity(UserRegistrationRequest request);
+    public User toEntity(UserRegistrationRequest request);
 
-    UserResponse toResponse(User user);
+    public UserResponse toResponse(User user);
 }
